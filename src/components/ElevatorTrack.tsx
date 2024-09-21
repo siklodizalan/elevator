@@ -23,7 +23,7 @@ const ElevatorTrack: React.FC<ElevatorTrackProps> = ({ numberOfFloors, currentFl
             transition: 'transform 0.5s ease-in-out',
             }}
         >
-        <Elevator id={elevatorId} numberOfFloors={numberOfFloors} moveElevator={moveElevator} />
+        <Elevator id={elevatorId} numberOfFloors={numberOfFloors} currentFloor={currentFloor} moveElevator={moveElevator} />
       </div>
     </div>
     );
