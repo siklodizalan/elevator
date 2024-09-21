@@ -54,7 +54,7 @@ body {
 .btn {
   background-color: #4CAF50;
   color: white;
-  padding: 10px 15px;
+  padding: 8px 15px;
   margin: 5px;
   border: none;
   cursor: pointer;
@@ -62,4 +62,49 @@ body {
 
 .btn:hover {
   background-color: #45a049;
+}
+
+.seven-segment-display {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 40px;
+  height: 75px;
+  margin: auto;
+}
+
+.segment-horizontal {
+  width: 20px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 3px;
+  margin: 1px;
+}
+
+.segment-vertical {
+  width: 10px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 3px;
+  margin: 1px;
+}
+
+.segment-big-vertical {
+  width: 20px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 3px;
+  margin: 1px;
+}
+
+.segment-point {
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 3px;
+  margin: 1px;
+}
+
+.lit {
+  background-color: #f00;
 }
