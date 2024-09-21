@@ -21,7 +21,7 @@ const Elevator: React.FC<ElevatorProps> = ({ id, numberOfFloors, currentFloor, m
                     <Button 
                         key={floor} 
                         label={floor} 
-                        onClick={() => moveElevator(id == 'A' ? 'A' : 'B', floor)} 
+                        onClick={() => moveElevator(id === 'A' ? 'A' : 'B', floor)} 
                     />
                 ))}
             </div>
