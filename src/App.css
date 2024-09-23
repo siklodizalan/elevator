@@ -39,6 +39,14 @@ body {
   flex-direction: column-reverse;
 }
 
+.floor-arrows {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  margin: auto;
+}
+
 .floor-buttons {
   margin-bottom: 10px;
 }
@@ -107,4 +115,32 @@ body {
 
 .lit {
   background-color: #f00;
+}
+
+.arrow-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+
+.arrow {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+}
+
+.arrow-up {
+  border-bottom: 30px solid #ccc;
+}
+
+.arrow-down {
+  border-top: 30px solid #ccc;
+}
+
+.arrow-horizontal {
+  width: 40px;
+  height: 5px;
+  background-color: #ccc;
 }

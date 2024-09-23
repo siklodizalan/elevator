@@ -2,15 +2,17 @@ import React from "react";
 import Elevator from "./Elevator";
 
 interface ElevatorTrackProps {
+    elevatorId: string;
     numberOfFloors: number;
     currentFloor: number;
-    elevatorId: string;
+    transitionTime: number;
     moveElevator: (elevator: 'A' | 'B', floor: number) => void;
 }
 
-const ElevatorTrack: React.FC<ElevatorTrackProps> = ({ numberOfFloors, currentFloor, elevatorId, moveElevator }) => {
+const ElevatorTrack: React.FC<ElevatorTrackProps> = ({ elevatorId, numberOfFloors, currentFloor, transitionTime, moveElevator }) => {
     const floorHeight = 250;
     const trackHeight = numberOfFloors * floorHeight;
+    transitionTime /= 1000;
 
     const elevatorPosition = (numberOfFloors - 1 - currentFloor) * floorHeight;
 
@@ -20,7 +22,7 @@ const ElevatorTrack: React.FC<ElevatorTrackProps> = ({ numberOfFloors, currentFl
             className="elevator"
             style={{
             transform: `translateY(${elevatorPosition}px)`,
-            transition: 'transform 0.5s ease-in-out',
+            transition: `transform ${transitionTime}s ease-in-out`,
             }}
         >
         <Elevator id={elevatorId} numberOfFloors={numberOfFloors} currentFloor={currentFloor} moveElevator={moveElevator} />
