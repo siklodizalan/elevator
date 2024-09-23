@@ -3,7 +3,7 @@ import Floor from './Floor';
 import ElevatorTrack from './ElevatorTrack';
 
 const Building: React.FC = () => {
-  const numberOfFloors = 7;
+  const [numberOfFloors, setNumberOfFloors] = useState<number>(7);
   const transitionTime = 1000;
 
   const [elevatorA, setElevatorA] = useState<number>(0);
@@ -45,37 +45,56 @@ const Building: React.FC = () => {
     }
   };
 
+  const handleFloorNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(event.target.value);
+    if (value >= 1 && value <= 10) {
+      setNumberOfFloors(value);
+      setElevatorB(value - 1);
+    }
+  };
+
   return (
     <div className="building">
-        <div className="elevator-system">
-            <ElevatorTrack 
-              elevatorId="A" 
-              numberOfFloors={numberOfFloors} 
-              currentFloor={elevatorA} 
-              transitionTime={transitionTime}
-              moveElevator={moveElevator} 
+      <div>
+        <label>
+          Number of Floors (1-10):
+          <input
+            type="number"
+            value={numberOfFloors}
+            onChange={handleFloorNumberChange}
+            min="1"
+            max="10"
+          />
+        </label>
+      </div>
+      <div className="elevator-system">
+        <ElevatorTrack 
+          elevatorId="A" 
+          numberOfFloors={numberOfFloors} 
+          currentFloor={elevatorA} 
+          transitionTime={transitionTime}
+          moveElevator={moveElevator} 
+        />
+        <div className="floors">
+          {([...Array(numberOfFloors).keys()].reverse()).map((floor) => (
+            <Floor
+              key={floor}
+              floorNumber={floor}
+              numberOfFloors={numberOfFloors}
+              elevatorDirections={[elevatorADirection, elevatorBDirection]}
+              moveElevator={moveElevator}
+              getClosestElevator={getClosestElevator}
             />
-            <div className="floors">
-                {([...Array(numberOfFloors).keys()].reverse()).map((floor) => (
-                    <Floor
-                        key={floor}
-                        floorNumber={floor}
-                        numberOfFloors={numberOfFloors}
-                        elevatorDirections={[elevatorADirection, elevatorBDirection]}
-                        moveElevator={moveElevator}
-                        getClosestElevator={getClosestElevator}
-                    />
-                ))}
-            </div>
-            <ElevatorTrack 
-              elevatorId="B"
-              numberOfFloors={numberOfFloors} 
-              currentFloor={elevatorB}  
-              transitionTime={transitionTime}
-              moveElevator={moveElevator} 
-            />
+          ))}
         </div>
-        
+        <ElevatorTrack 
+          elevatorId="B"
+          numberOfFloors={numberOfFloors} 
+          currentFloor={elevatorB}  
+          transitionTime={transitionTime}
+          moveElevator={moveElevator} 
+        />
+      </div> 
     </div>
   );
 };
